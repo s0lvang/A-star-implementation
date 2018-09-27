@@ -1,4 +1,4 @@
-from boardReader import makeBoard
+from board_reader import make_board
 from heapq import heappush, heappop
 
 
@@ -8,39 +8,38 @@ def heuristic(a, b):
     return abs(x1 - x2) + abs(y1 - y2)
 
 
-def aStar(board, start, endNode):
+def a_star(board, start, end_node):
     heap = []
     heappush(heap, start)
-    start.costSoFar = 0
+    start.cost_so_far = 0
 
-    while(heap):
+    while heap:
         current = heappop(heap)
 
-        if(current.isEndNode):
+        if current.is_end_node:
             break
-        for x, y in current.getNeighbours():
+        for x, y in current.get_neighbours():
             try:
-                if(x < 0 or y < 0):
+                if x < 0 or y < 0:
                     raise IndexError
                 next = board[x][y]
-                new_cost = current.costSoFar + next.weight
-                if(new_cost < next.costSoFar):
-                    next.costSoFar = new_cost
-                    next.priority = new_cost + heuristic((x, y), (endNode.x, endNode.y)) 
-                    next.cameFrom = current
+                new_cost = current.cost_so_far + next.weight
+                if new_cost < next.cost_so_far:
+                    next.cost_so_far = new_cost
+                    next.priority = new_cost + heuristic((x, y), (end_node.x, end_node.y))
+                    next.came_from = current
                     heappush(heap, next)
-            except(IndexError):
+            except IndexError:
                 continue
     return current
 
 
 def main(filename):
-    board, startNode, endNode = makeBoard(filename)
-    endNode = aStar(board, startNode, endNode)
-    while(endNode):
-        #print(endNode.x, endNode.y)
-        path.append((endNode.x, endNode.y))
-        endNode = endNode.cameFrom
+    board, start_node, end_node = make_board(filename)
+    end_node = a_star(board, start_node, end_node)
+    while end_node:
+        path.append((end_node.x, end_node.y))
+        end_node = end_node.came_from
 
 
 def get_path():
@@ -48,5 +47,3 @@ def get_path():
 
 
 path = []
-
-#main('boards/board-2-1.txt')

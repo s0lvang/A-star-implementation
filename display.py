@@ -1,16 +1,13 @@
 from tkinter import *
 from a_star import main, get_path
-from boardReader import get_node_list
+from board_reader import get_node_list
 from math import inf
 
 
 class Display:
 
     def __init__(self, master):
-
-        self.master = master
-
-        # Creating frame for buttons
+        # Creating frame for button
         frame = Frame(master)
         frame.pack()
 
@@ -47,7 +44,7 @@ class Display:
 # Declaring tkinter root
 root = Tk()
 
-main('boards/board-1-4.txt')
+main('boards/board-1-1.txt')
 
 display = Display(root)
 display.setup_canvas(root, 200, 70)
