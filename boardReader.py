@@ -2,6 +2,7 @@ from Node import Node
 from math import inf
 
 startNode = None
+endNode = None
 
 
 def generateValue(element):
@@ -12,9 +13,11 @@ def generateValue(element):
     elif (element == 'A'):
         global startNode
         startNode = Node(0, True, False)
-        return startNode 
+        return startNode
     elif(element == 'B'):
-        return Node(0, False, True)
+        global endNode
+        endNode = Node(0, False, True)
+        return endNode
     return Node(element, False, False)
 
 
@@ -26,9 +29,7 @@ def makeBoard(filename):
         for j in range(len(lines[i])):
             lines[i][j] = generateValue(lines[i][j])
             lines[i][j].setPosition(i, j)
-    for line in lines:
-        print(line)
-    return lines, startNode
+    return lines, startNode, endNode
 
 makeBoard("boards/board-2-1.txt")
 

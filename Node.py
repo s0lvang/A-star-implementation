@@ -1,13 +1,17 @@
+from math import inf
+
+
 class Node:
 
     def __init__(self, weight, isStartNode, isEndNode):
         self.weight = weight
         self.isStartNode = isStartNode
         self.isEndNode = isEndNode
-        self.closed = False
-        self.neighbours = []
-
-    def setPosistion(self, x, y):
+        self.costSoFar = inf 
+        self.cameFrom = None
+        self.priority = inf
+ 
+    def setPosition(self, x, y):
         self.x = x
         self.y = y
 
@@ -17,7 +21,11 @@ class Node:
         return [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
 
     def __cmp__(self, other):
-        return(self.weight, other.weight)
+        return(self.priority < other.priority)
+    
+    def __lt__(self, other):
+        return self.priority < other.priority
+
 
     def __repr__(self):
         return str(self.__dict__)
