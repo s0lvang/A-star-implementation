@@ -1,26 +1,38 @@
 from Node import Node
 from math import inf
 
+startNode = None
+endNode = None
+
+values = {
+    "#": inf,
+    ".": 1,
+    "w": 100,
+    "m": 50,
+    "f": 10,
+    "g": 5,
+    "r": 1,
+}
+
 
 def generateValue(element):
-    if(element == '#'):
-        return Node(inf, False, False)
-    elif (element == '.'):
-        return Node(1, False, False)
-    elif (element == 'A'):
-        return Node(0, True, False)
+    if (element == 'A'):
+        global startNode
+        startNode = Node(1, True, False)
+        return startNode
     elif(element == 'B'):
-        return Node(0, False, True)
-    return Node(element, False, False)
+        global endNode
+        endNode = Node(1, False, True)
+        return endNode
+    return Node(values.get(element, 1), False, False)
 
 
 def makeBoard(filename):
-    board = None
     with open(filename) as f:
         lines = f.readlines()
     for i in range(len(lines)):
         lines[i] = list(lines[i].strip())
-        lines[i] = list(map(lambda x: generateValue(x), lines[i]))
-    return lines
-
-makeBoard("boards/board-1-1.txt")
+        for j in range(len(lines[i])):
+            lines[i][j] = generateValue(lines[i][j])
+            lines[i][j].setPosition(i, j)
+    return lines, startNode, endNode
