@@ -37,8 +37,9 @@ def aStar(board, start, endNode):
 def main(filename):
     board, startNode, endNode = makeBoard(filename)
     endNode = aStar(board, startNode, endNode)
-    while(True):
-        print(endNode.x, endNode.y)
+    while(endNode):
+        #print(endNode.x, endNode.y)
+        path.append((endNode.x, endNode.y))
         endNode = endNode.cameFrom
 
 main('boards/board-2-1.txt')
