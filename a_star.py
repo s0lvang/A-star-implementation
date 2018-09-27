@@ -42,4 +42,11 @@ def main(filename):
         path.append((endNode.x, endNode.y))
         endNode = endNode.cameFrom
 
-main('boards/board-2-1.txt')
+
+def get_path():
+    return path
+
+
+path = []
+
+#main('boards/board-2-1.txt')
