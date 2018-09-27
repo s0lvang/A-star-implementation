@@ -1,4 +1,4 @@
-from Node import Node
+from node import Node
 from math import inf
 
 start_node = None

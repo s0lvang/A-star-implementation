@@ -1,4 +1,4 @@
-from boardReader import make_board
+from board_reader import make_board
 from heapq import heappush, heappop
 
 

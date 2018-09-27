@@ -1,6 +1,6 @@
 from tkinter import *
 from a_star import main, get_path
-from boardReader import get_node_list
+from board_reader import get_node_list
 from math import inf
 
 
