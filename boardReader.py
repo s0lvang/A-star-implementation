@@ -25,10 +25,10 @@ def makeBoard(filename):
         lines[i] = list(lines[i].strip())
         for j in range(len(lines[i])):
             lines[i][j] = generateValue(lines[i][j])
-            neighbours = [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]
-            lines[i][j].setNeighbours(neighbours)
+            lines[i][j].setPosition(i, j)
     for line in lines:
         print(line)
     return lines, startNode
 
 makeBoard("boards/board-2-1.txt")
+

@@ -17,13 +17,11 @@ def aStar(board, start):
 
         if(current.isEndNode):
             break
-        for x, y in current.neighbours:
+        for x, y in current.getNeighbours():
             try:
                 next = board[x][y]
             except(IndexError):
                 continue
-            
-    
 
 
 def main(filename):

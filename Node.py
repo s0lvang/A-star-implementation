@@ -7,11 +7,17 @@ class Node:
         self.closed = False
         self.neighbours = []
 
-    def setNeighbours(self, neighbours):
-        self.neighbours = neighbours
+    def setPosistion(self, x, y):
+        self.x = x
+        self.y = y
+
+    def getNeighbours(self):
+        x = self.x
+        y = self.y
+        return [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
 
     def __cmp__(self, other):
         return(self.weight, other.weight)
 
     def __repr__(self):
-        return str(self.weight)
+        return str(self.__dict__)
