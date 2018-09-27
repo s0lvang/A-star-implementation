@@ -10,7 +10,7 @@ class Node:
         self.costSoFar = inf 
         self.cameFrom = None
         self.priority = inf
- 
+        
     def setPosition(self, x, y):
         self.x = x
         self.y = y
@@ -25,7 +25,6 @@ class Node:
     
     def __lt__(self, other):
         return self.priority < other.priority
-
 
     def __repr__(self):
         return str(self.__dict__)

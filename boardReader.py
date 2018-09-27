@@ -4,21 +4,27 @@ from math import inf
 startNode = None
 endNode = None
 
+values = {
+    "#": inf,
+    ".": 1,
+    "w": 100,
+    "m": 50,
+    "f": 10,
+    "g": 5,
+    "r": 1,
+}
+
 
 def generateValue(element):
-    if(element == '#'):
-        return Node(inf, False, False)
-    elif (element == '.'):
-        return Node(1, False, False)
-    elif (element == 'A'):
+    if (element == 'A'):
         global startNode
-        startNode = Node(0, True, False)
+        startNode = Node(1, True, False)
         return startNode
     elif(element == 'B'):
         global endNode
-        endNode = Node(0, False, True)
+        endNode = Node(1, False, True)
         return endNode
-    return Node(element, False, False)
+    return Node(values.get(element, 1), False, False)
 
 
 def makeBoard(filename):
@@ -30,6 +36,3 @@ def makeBoard(filename):
             lines[i][j] = generateValue(lines[i][j])
             lines[i][j].setPosition(i, j)
     return lines, startNode, endNode
-
-makeBoard("boards/board-2-1.txt")
-

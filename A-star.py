@@ -20,14 +20,15 @@ def aStar(board, start, endNode):
             break
         for x, y in current.getNeighbours():
             try:
+                if(x < 0 or y < 0):
+                    raise IndexError
                 next = board[x][y]
                 new_cost = current.costSoFar + next.weight
                 if(new_cost < next.costSoFar):
                     next.costSoFar = new_cost
-                    # Remember to put end node as second parameter
                     next.priority = new_cost + heuristic((x, y), (endNode.x, endNode.y)) 
-                    heappush(heap, next)
                     next.cameFrom = current
+                    heappush(heap, next)
             except(IndexError):
                 continue
     return current
@@ -40,4 +41,4 @@ def main(filename):
         print(endNode.x, endNode.y)
         endNode = endNode.cameFrom
 
-main('boards/board-1-1.txt')
+main('boards/board-2-1.txt')
