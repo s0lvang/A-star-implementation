@@ -14,17 +14,26 @@ values = {
     "r": 1,
 }
 
+node_list = []
+
+
+def get_node_list():
+    return node_list
+
 
 def generateValue(element):
     if (element == 'A'):
         global startNode
-        startNode = Node(1, True, False)
-        return startNode
+        this_node = Node(1, True, False)
+        startNode = this_node
     elif(element == 'B'):
         global endNode
-        endNode = Node(1, False, True)
-        return endNode
-    return Node(values.get(element, 1), False, False)
+        this_node = Node(1, False, True)
+        endNode = this_node
+    else:
+        this_node = Node(values.get(element, 1), False, False)
+    node_list.append(this_node.weight)
+    return this_node
 
 
 def makeBoard(filename):
